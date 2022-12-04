@@ -23,9 +23,9 @@ mkdir -p base/resources base/patches overlays && mv charts/fluent-bit/values.yam
 ```
 helm template \
 --output-dir base \
---namespace bnz-logging \
+--namespace logging \
 --values base/values.yaml \
-bnz-logging \
+logging \
 charts/fluent-bit
 ```
 
@@ -44,6 +44,10 @@ EOF
 
 ```
 cd base && kustomize create --autodetect --recursive ./
+```
+
+```
+cd base && kubectl kustomize --enable-helm
 ```
 
 

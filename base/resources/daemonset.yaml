@@ -3,28 +3,28 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: bnz-logging-fluent-bit
+  name: logging-fluent-bit
   labels:
     helm.sh/chart: fluent-bit-0.21.5
     app.kubernetes.io/name: fluent-bit
-    app.kubernetes.io/instance: bnz-logging
+    app.kubernetes.io/instance: logging
     app.kubernetes.io/version: "2.0.6"
     app.kubernetes.io/managed-by: Helm
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: fluent-bit
-      app.kubernetes.io/instance: bnz-logging
+      app.kubernetes.io/instance: logging
   template:
     metadata:
       annotations:
-        checksum/config: c08bde325eeb3a685d0656ecdfa788638cdfe550b6024fee56102f344ab0993a
+        checksum/config: 491769c03e87b49189d41dfa0e5e9ec159d4f8e5f3fc68e2e489324855933533
         checksum/luascripts: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
       labels:
         app.kubernetes.io/name: fluent-bit
-        app.kubernetes.io/instance: bnz-logging
+        app.kubernetes.io/instance: logging
     spec:
-      serviceAccountName: bnz-logging-fluent-bit
+      serviceAccountName: logging-fluent-bit
       hostNetwork: false
       dnsPolicy: ClusterFirst
       containers:
@@ -61,7 +61,7 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: bnz-logging-fluent-bit
+            name: logging-fluent-bit
         - hostPath:
             path: /var/log
           name: varlog
