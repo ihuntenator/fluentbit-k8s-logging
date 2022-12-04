@@ -1,0 +1,22 @@
+---
+# Source: fluent-bit/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: bnz-logging-fluent-bit
+  labels:
+    helm.sh/chart: fluent-bit-0.21.5
+    app.kubernetes.io/name: fluent-bit
+    app.kubernetes.io/instance: bnz-logging
+    app.kubernetes.io/version: "2.0.6"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - port: 2020
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: fluent-bit
+    app.kubernetes.io/instance: bnz-logging

@@ -1,0 +1,22 @@
+---
+# Source: fluent-bit/templates/tests/test-connection.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "bnz-logging-fluent-bit-test-connection"
+  labels:
+    helm.sh/chart: fluent-bit-0.21.5
+    app.kubernetes.io/name: fluent-bit
+    app.kubernetes.io/instance: bnz-logging
+    app.kubernetes.io/version: "2.0.6"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: "busybox:latest"
+      imagePullPolicy: Always
+      command: ['wget']
+      args: ['bnz-logging-fluent-bit:2020']
+  restartPolicy: Never

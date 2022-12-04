@@ -1,0 +1,20 @@
+---
+# Source: fluent-bit/templates/clusterrolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: bnz-logging-fluent-bit
+  labels:
+    helm.sh/chart: fluent-bit-0.21.5
+    app.kubernetes.io/name: fluent-bit
+    app.kubernetes.io/instance: bnz-logging
+    app.kubernetes.io/version: "2.0.6"
+    app.kubernetes.io/managed-by: Helm
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: bnz-logging-fluent-bit
+subjects:
+  - kind: ServiceAccount
+    name: bnz-logging-fluent-bit
+    namespace: bnz-logging
