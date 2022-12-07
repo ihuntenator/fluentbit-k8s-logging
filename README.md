@@ -58,7 +58,7 @@ cd base && kubectl kustomize --enable-helm
 ├── base
 │   ├── kustomization.yaml
 │   ├── patches
-│   │   └── fluentd.conf
+│   │   └── fluent-bit.conf
 │   ├── resources
 │   │   ├── clusterrole.yaml
 │   │   ├── clusterrolebinding.yaml
